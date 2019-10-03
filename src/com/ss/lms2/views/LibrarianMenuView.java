@@ -1,6 +1,10 @@
 package com.ss.lms2.views;
 
 import com.ss.lms2.UserInput;
+import com.ss.lms2.daos.LibraryBranchDAO;
+import com.ss.lms2.pojos.LibraryBranch;
+
+import java.util.List;
 
 public class LibrarianMenuView {
     static public void mainPrompt() {
@@ -20,6 +24,18 @@ public class LibrarianMenuView {
     }
 
     static public void chooseBranch() {
+        List<LibraryBranch> allBranches = LibraryBranchDAO.getAll();
+        Integer branchChoice = null;
+        Integer index = 1;
+        for (LibraryBranch branch : allBranches) {
+            System.out.println(index + ") " + branch.branchName);
+            index++;
+        }
+        // if the user selects this number, they chose to exit to main menu
+        Integer exitChoice = index;
+        System.out.println(exitChoice + ") Main Menu");
 
+        System.out.print("Choose: ");
+        branchChoice = Integer.parseInt(UserInput.get());
     }
 }
